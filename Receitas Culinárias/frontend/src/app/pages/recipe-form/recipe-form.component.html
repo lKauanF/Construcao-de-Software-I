@@ -1,0 +1,85 @@
+<section class="page-title-row">
+  <div>
+    <h1>Nova receita</h1>
+    <p>Preencha os dados obrigatórios para cadastrar uma nova receita.</p>
+  </div>
+
+  <a class="button outline" routerLink="/receitas">Voltar</a>
+</section>
+
+@if (generalError()) {
+  <div class="alert error">{{ generalError() }}</div>
+}
+
+<form class="recipe-form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-grid">
+    <div class="form-field">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" formControlName="nome" placeholder="Ex.: Brigadeiro" />
+      @if (getFieldError('nome')) {
+        <small>{{ getFieldError('nome') }}</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="categoria">Categoria</label>
+      <select id="categoria" formControlName="categoria">
+        @for (category of categories; track category) {
+          <option [value]="category">{{ category }}</option>
+        }
+      </select>
+      @if (getFieldError('categoria')) {
+        <small>{{ getFieldError('categoria') }}</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="tempoPreparo">Tempo de preparo (minutos)</label>
+      <input id="tempoPreparo" type="number" min="1" formControlName="tempoPreparo" />
+      @if (getFieldError('tempoPreparo')) {
+        <small>{{ getFieldError('tempoPreparo') }}</small>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="porcoes">Porções</label>
+      <input id="porcoes" type="number" min="1" formControlName="porcoes" />
+      @if (getFieldError('porcoes')) {
+        <small>{{ getFieldError('porcoes') }}</small>
+      }
+    </div>
+  </div>
+
+  <div class="form-field ingredients-field" formArrayName="ingredientes">
+    <div class="ingredients-header">
+      <label>Ingredientes</label>
+      <button class="button outline" type="button" (click)="addIngredient()">Adicionar ingrediente</button>
+    </div>
+
+    @for (ingredientControl of ingredientes.controls; track $index) {
+      <div class="ingredient-row">
+        <input [formControlName]="$index" type="text" placeholder="Ex.: 1 lata de leite condensado" />
+        <button class="button danger outline" type="button" (click)="removeIngredient($index)" [disabled]="ingredientes.length === 1">Remover</button>
+      </div>
+
+      @if (getIngredientError($index)) {
+        <small>{{ getIngredientError($index) }}</small>
+      }
+    }
+  </div>
+
+  <div class="form-field">
+    <label for="modoPreparo">Modo de preparo</label>
+    <textarea id="modoPreparo" rows="8" formControlName="modoPreparo" placeholder="Descreva o passo a passo da receita"></textarea>
+    @if (getFieldError('modoPreparo')) {
+      <small>{{ getFieldError('modoPreparo') }}</small>
+    }
+  </div>
+
+  <div class="form-actions">
+    <a class="button outline" routerLink="/receitas">Cancelar</a>
+    <button class="button primary" type="submit" [disabled]="form.invalid || isSaving()">
+      {{ isSaving() ? 'Salvando...' : 'Salvar' }}
+    </button>
+  </div>
+</form>

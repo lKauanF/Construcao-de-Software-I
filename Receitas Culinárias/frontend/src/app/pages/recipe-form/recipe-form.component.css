@@ -1,0 +1,72 @@
+.recipe-form {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  padding: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label,
+.ingredients-header label {
+  color: #374151;
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea,
+.ingredient-row input {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.85rem 1rem;
+  width: 100%;
+}
+
+.form-field small,
+.ingredients-field small {
+  color: #b91c1c;
+  display: block;
+  margin-top: 0.35rem;
+}
+
+.ingredients-header,
+.ingredient-row,
+.form-actions {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.ingredient-row {
+  margin-bottom: 0.5rem;
+}
+
+.form-actions {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .ingredients-header,
+  .ingredient-row,
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

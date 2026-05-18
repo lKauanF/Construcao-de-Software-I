@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f3f4f6;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: 0 1rem;
+}
+
+.app-header {
+  background: #111827;
+  color: #ffffff;
+  padding: 1rem 0;
+}
+
+.header-content {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.page-content {
+  padding-bottom: 3rem;
+  padding-top: 2rem;
+}
+
+.page-title-row {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.page-title-row h1 {
+  font-size: 2rem;
+  margin: 0 0 0.35rem;
+}
+
+.page-title-row p {
+  color: #4b5563;
+  margin: 0;
+}
+
+.button {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.7rem 1rem;
+  transition: 0.2s ease;
+}
+
+.button.primary {
+  background: #ea580c;
+  color: #ffffff;
+}
+
+.button.primary:hover {
+  background: #c2410c;
+}
+
+.button.outline {
+  background: #ffffff;
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+.button.outline:hover {
+  border-color: #ea580c;
+  color: #ea580c;
+}
+
+.button.danger {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.button.danger.outline {
+  background: #ffffff;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.badge {
+  background: #ffedd5;
+  border-radius: 999px;
+  color: #9a3412;
+  display: inline-flex;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.3rem 0.65rem;
+}
+
+.alert {
+  border-radius: 12px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.alert.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.alert.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.empty-message {
+  background: #ffffff;
+  border: 1px dashed #d1d5db;
+  border-radius: 16px;
+  color: #6b7280;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .header-content,
+  .page-title-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

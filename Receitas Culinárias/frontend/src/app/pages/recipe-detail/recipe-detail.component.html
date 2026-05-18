@@ -1,0 +1,56 @@
+<section class="page-title-row">
+  <div>
+    <h1>Detalhes da receita</h1>
+    <p>Visualize todas as informações cadastradas.</p>
+  </div>
+
+  <a class="button outline" routerLink="/receitas">Voltar à listagem</a>
+</section>
+
+@if (errorMessage()) {
+  <div class="alert error">{{ errorMessage() }}</div>
+}
+
+@if (isLoading()) {
+  <p class="empty-message">Carregando receita...</p>
+} @else if (recipe()) {
+  <article class="detail-card">
+    <div class="detail-header">
+      <div>
+        <span class="badge">{{ recipe()?.categoria }}</span>
+        <h2>{{ recipe()?.nome }}</h2>
+        <p>Cadastrada em {{ recipe()?.dataCadastro | date:'dd/MM/yyyy HH:mm' }}</p>
+      </div>
+
+      <button class="button danger" type="button" (click)="deleteRecipe()" [disabled]="isDeleting()">
+        {{ isDeleting() ? 'Excluindo...' : 'Excluir receita' }}
+      </button>
+    </div>
+
+    <div class="detail-grid">
+      <div class="info-box">
+        <strong>Tempo de preparo</strong>
+        <span>{{ recipe()?.tempoPreparo }} minutos</span>
+      </div>
+
+      <div class="info-box">
+        <strong>Porções</strong>
+        <span>{{ recipe()?.porcoes }}</span>
+      </div>
+    </div>
+
+    <section>
+      <h3>Ingredientes</h3>
+      <ul class="ingredient-list">
+        @for (ingredient of recipe()?.ingredientes; track ingredient) {
+          <li>{{ ingredient }}</li>
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h3>Modo de preparo</h3>
+      <p class="preparation-text">{{ recipe()?.modoPreparo }}</p>
+    </section>
+  </article>
+}

@@ -1,0 +1,47 @@
+<section class="page-title-row">
+  <div>
+    <h1>Receitas</h1>
+    <p>Consulte, pesquise e visualize suas receitas cadastradas.</p>
+  </div>
+
+  <a class="button primary" routerLink="/receitas/nova">Nova receita</a>
+</section>
+
+@if (successMessage()) {
+  <div class="alert success">{{ successMessage() }}</div>
+}
+
+@if (errorMessage()) {
+  <div class="alert error">{{ errorMessage() }}</div>
+}
+
+<div class="search-box">
+  <label for="searchTerm">Buscar por nome</label>
+  <input
+    id="searchTerm"
+    type="search"
+    placeholder="Digite o nome da receita"
+    [ngModel]="searchTerm()"
+    (ngModelChange)="updateSearchTerm($event)"
+  />
+</div>
+
+@if (isLoading()) {
+  <p class="empty-message">Carregando receitas...</p>
+} @else if (filteredRecipes().length === 0) {
+  <p class="empty-message">Nenhuma receita cadastrada</p>
+} @else {
+  <div class="recipe-grid">
+    @for (recipe of filteredRecipes(); track recipe.id) {
+      <article class="recipe-card">
+        <div>
+          <span class="badge">{{ recipe.categoria }}</span>
+          <h2>{{ recipe.nome }}</h2>
+          <p>{{ recipe.tempoPreparo }} min de preparo</p>
+        </div>
+
+        <a class="button outline" [routerLink]="['/receitas', recipe.id]">Ver detalhes</a>
+      </article>
+    }
+  </div>
+}
